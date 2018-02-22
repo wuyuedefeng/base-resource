@@ -32,6 +32,10 @@ class CatsControllerTest < ActionDispatch::IntegrationTest
 
     put "/cats/#{cat.id}", params: {name: ''}
     assert_match "can't be blank", @response.body
+
+    cat = Cat.create(name: '2')
+    put "/cats/#{cat.id}", params: {name: 'n2'}
+    assert_match "has already been taken", @response.body
   end
 
   test "show" do
