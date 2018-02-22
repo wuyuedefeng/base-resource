@@ -6,7 +6,7 @@ module BaseResource::InstanceMethods
 
   # name of the resource collection eg: 'users'
   def resources_name(resources = nil)
-    resources ? resources.model.to_s.pluralize.downcase : controller_name
+    resources ? resources.model.to_s.pluralize.downcase : controller_name.pluralize
   end
 
   # eg: return 'User' string
