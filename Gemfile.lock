@@ -13,7 +13,11 @@ PATH
   remote: .
   specs:
     base_resource (0.1.0)
-      rails (~> 5.1.4)
+      kaminari
+      rails (< 6)
+      ransack
+      reform
+      reform-rails
 
 GEM
   remote: https://rubygems.org/
@@ -171,4 +175,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.1

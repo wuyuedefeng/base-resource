@@ -10,7 +10,7 @@ gem 'reform-rails'
 # 分页
 gem 'kaminari'
 # 搜索
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
 ```
 
 ## Usage
