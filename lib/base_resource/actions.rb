@@ -33,7 +33,7 @@ module BaseResource
         instance_variable_set("@#{resource_name(form.model)}", form.model)
         if block_given?
           form.save do |hash|
-            yield hash
+            yield hash, form
           end
           render json: { msg: :successfully_create }, status: 200
         else
