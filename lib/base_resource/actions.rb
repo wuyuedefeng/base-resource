@@ -8,7 +8,7 @@ module BaseResource
     include Search
 
     def index resources = nil
-      resources = find_resources resources
+      resources = find_base_resources resources
       if block_given?
         resources = yield(resources)
       end
@@ -19,7 +19,7 @@ module BaseResource
     # method(:index).super_method.call
 
     def show
-      resource = find_resource
+      resource = find_base_resource
       instance_variable_set("@#{resource_name(resource)}", resource)
       if block_given?
         yield(resource)
@@ -78,11 +78,11 @@ module BaseResource
 
     protected
 
-    def find_resources resources = nil
+    def find_base_resources resources = nil
       (resources || resource_klass).ransack(prepare_search_condition).result(distinct: true)
     end
 
-    def find_resource(id = nil)
+    def find_base_resource(id = nil)
       id ||= respond_to?(:params) && params.is_a?(ActionController::Parameters) && params[:id]
       resource_klass.find id
     end
