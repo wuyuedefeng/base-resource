@@ -15,6 +15,15 @@ class CatsControllerTest < ActionDispatch::IntegrationTest
     end
     get cats_url
     assert_match "100", @response.body
+
+    get cats_url, params: {qs_sorts: 'created_at asc'}
+    assert_match "1", "#{JSON.parse(@response.body)['items'].first['id']}"
+
+    get cats_url, params: {qs_sorts: 'created_at desc'}
+    assert_match "100", "#{JSON.parse(@response.body)['items'].first['id']}"
+
+    get cats_url, params: {qs_sorts: ['created_at desc']}
+    assert_match "100", "#{JSON.parse(@response.body)['items'].first['id']}"
   end
 
   test "create" do
