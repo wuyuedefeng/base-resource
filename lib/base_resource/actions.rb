@@ -79,7 +79,9 @@ module BaseResource
     protected
 
     def find_base_resources resources = nil
-      (resources || resource_klass).ransack(prepare_search_condition).result(distinct: true)
+      search = (resources || resource_klass).ransack(prepare_search_condition)
+      search.sorts = prepare_search_sorts if search.sorts.empty? && prepare_search_sorts.present?
+      search.result(distinct: true)
     end
 
     def find_base_resource(id = nil)

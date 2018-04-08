@@ -11,5 +11,9 @@ module BaseResource
         search_hash[key] = params["q_#{key}"]
       end
     end
+
+    def prepare_search_sorts
+      params[:qs_sorts]
+    end
   end
 end
